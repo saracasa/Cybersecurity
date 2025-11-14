@@ -8,13 +8,8 @@ from sdv.evaluation.single_table import run_diagnostic, evaluate_quality
 from sdv.metadata import SingleTableMetadata
 
 # Carica i dati
-real = pd.read_csv('dataset/raw/diabetes.csv')
+real = pd.read_csv('dataset/real/diabetes_train.csv')
 synth = pd.read_csv('dataset/synthetic/diabetes_synth_noprivacy.csv')
-
-# Sostituisci 0 con NaN e poi con mediana per colonne specifiche
-cols_with_zeros = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
-real[cols_with_zeros] = real[cols_with_zeros].replace(0, np.nan)
-real[cols_with_zeros] = real[cols_with_zeros].fillna(real[cols_with_zeros].median())
 
 # Colonne numeriche da analizzare
 num_cols = [col for col in real.columns if pd.api.types.is_numeric_dtype(real[col])]
