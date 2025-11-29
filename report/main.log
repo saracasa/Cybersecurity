@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.7.17)  29 NOV 2025 11:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.7.17)  29 NOV 2025 11:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Giorgia/VRCrimeSceneSimulator/report/main.tex
-(c:/Users/Giorgia/VRCrimeSceneSimulator/report/main.tex
+**c:/Users/Giorgia/Cybersecurity/report/main.tex
+(c:/Users/Giorgia/Cybersecurity/report/main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (tau-class/tau.cls
@@ -1670,14 +1670,14 @@ Package logreq Info: Writing requests to 'main.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  68598 strings out of 474486
- 1514079 string characters out of 5742811
+ 1513991 string characters out of 5742811
  2631739 words of memory out of 5000000
  89983 multiletter control sequences out of 15000+600000
  638754 words of font info for 109 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 137i,12n,143p,1047b,1313s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 137i,12n,143p,1039b,1313s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (2 pages, 449081 bytes).
+Output written on main.pdf (2 pages, 449073 bytes).
 PDF statistics:
  61 PDF objects out of 1000 (max. 8388607)
  5 named destinations out of 1000 (max. 500000)

@@ -1,6 +1,6 @@
-PWD c:\Users\Giorgia\VRCrimeSceneSimulator\report
+PWD c:\Users\Giorgia\Cybersecurity\report
 INPUT C:\Users\Giorgia\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Giorgia\VRCrimeSceneSimulator\report\main.tex
+INPUT c:\Users\Giorgia\Cybersecurity\report\main.tex
 OUTPUT main.log
 INPUT .\tau-class\tau.cls
 INPUT tau-class\tau.cls
