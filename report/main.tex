@@ -1,5 +1,8 @@
 \documentclass[12pt,a4paper]{tau-class/tau}
 \usepackage[italian]{babel}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definizione}
 
 
 \journalname{Cybersecurity}
@@ -22,7 +25,7 @@
   \vspace{0.5cm}
   {\large Anno accademico 2025/2026}\\[0.5cm]
   % Date
-  {\large 26 Novembre, 2025}\\[0.5cm]
+  {\large 10 Dicembre, 2025}\\[0.5cm]
 
   \vfill
 \end{titlepage}
@@ -73,7 +76,7 @@ Questo studio si propone di rispondere alle seguenti domande:
 
 Per rispondere a queste domande, viene utilizzato l'UCI Diabetes Dataset, un
 dataset pubblico contenente 768 pazienti con variabili mediche predittive e
-diagnosi di diabete. 
+diagnosi di diabete.
 
 L'analisi si sviluppa attraverso quattro fasi. Innanzitutto, vengono generati
 dataset sintetici con diversi livelli di protezione della privacy: nessuna
@@ -81,20 +84,333 @@ privacy, privacy moderata e privacy forte. Successivamente, viene valutata la
 somiglianza statistica confrontando distribuzioni e matrici di correlazione tra
 dati reali e sintetici mediante test statistici standard. Nella terza fase,
 viene verificata l'utilità dei dati sintetici addestrando modelli predittivi
-che imparano a diagnosticare il diabete valutandoli su dati reali attraverso le metriche Accuracy,
-Precision, Recall, F1-Score e ROC-AUC. Viene poi implementato un attacco di
-\textit{membership inference} per testare la resistenza dei dati sintetici e
-individuare eventuali fughe di informazioni. Infine, il compromesso tra privacy
-e utilità viene visualizzato attraverso grafici che mostrano come le diverse
-configurazioni influenzino le prestazioni, permettendo di identificare il punto
-di equilibrio ottimale.
+che imparano a diagnosticare il diabete valutandoli su dati reali attraverso le
+metriche Accuracy, Precision, Recall, F1-Score e ROC-AUC. Viene poi
+implementato un attacco di \textit{membership inference} per testare la
+resistenza dei dati sintetici e individuare eventuali fughe di informazioni.
+Infine, il compromesso tra privacy e utilità viene visualizzato attraverso
+grafici che mostrano come le diverse configurazioni influenzino le prestazioni,
+permettendo di identificare il punto di equilibrio ottimale.
 
-\section{Generezione dati sintetici}
+\section{Generezione dati sintetici con privacy differenziale}
+
+La presente sezione illustra il
+processo di sintesi di tre dataset caratterizzati da differenti livelli di
+garanzie di privacy, a partire dal dataset reale di addestramento.
+
+\subsection{Caratteristiche del dataset}
+
+Il presente studio utilizza l'UCI Pima Indians Diabetes Dataset, un dataset
+pubblico composto da 768 osservazioni relative a pazienti di
+sesso femminile di età superiore ai 21 anni e di origine etnica.
+
+Il dataset comprende 8 variabili predittive di natura clinica e una variabile
+target binaria:
+
+\begin{itemize}
+  \item \textbf{Pregnancies}: numero di gravidanze (variabile discreta, range: 0-17)
+  \item \textbf{Glucose}: concentrazione plasmatica di glucosio a 2 ore da un test orale di tolleranza al glucosio, espressa in mg/dL (variabile continua, range: 0-199)
+  \item \textbf{BloodPressure}: pressione sanguigna diastolica, espressa in mm Hg (variabile continua, range: 0-122)
+  \item \textbf{SkinThickness}: spessore della plica cutanea tricipitale, espresso in mm (variabile continua, range: 0-99)
+  \item \textbf{Insulin}: livello di insulina sierica a 2 ore, espresso in $\mu$U/mL (variabile continua, range: 0-846)
+  \item \textbf{BMI}: indice di massa corporea, calcolato come peso in kg/(altezza in m)$^2$ (variabile continua, range: 0-67.1)
+  \item \textbf{DiabetesPedigreeFunction}: funzione che quantifica la storia familiare di diabete, calcolata mediante una funzione che considera la relazione e l'età di insorgenza del diabete nei familiari (variabile continua, range: 0.078-2.42)
+  \item \textbf{Age}: età del paziente espressa in anni (variabile discreta, range: 21-81)
+  \item \textbf{Outcome}: variabile target binaria che indica la presenza (1) o assenza (0) di diabete mellito
+\end{itemize}
+
+Il dataset presenta una distribuzione sbilanciata della variabile target, con
+approssimativamente il 65\% di osservazioni negative (assenza di diabete) e il
+35\% di osservazioni positive (presenza di diabete). 
+
+\subsection{Preparazione e preprocessing del dataset}
+
+La fase di preprocessing è fondamentale per garantire la qualità dei dati prima
+della generazione sintetica. Il dataset originale presenta una problematica
+rilevante: alcune variabili cliniche contengono valori pari a zero che
+risultano fisiologicamente implausibili. Ad esempio, valori nulli per la
+concentrazione di glucosio, la pressione sanguigna, lo spessore della plica
+cutanea, il livello di insulina o l'indice di massa corporea non sono
+clinicamente possibili in pazienti viventi.
+
+Tali valori zero rappresentano in realtà dati mancanti che sono stati
+codificati impropriamente nel dataset originale. La strategia di trattamento
+adottata prevede:
+
+\begin{enumerate}
+  \item \textbf{Identificazione dei valori anomali}: i valori pari a zero nelle colonne \texttt{glucose}, \texttt{blood\_pressure}, \texttt{skin\_thickness}, \texttt{insulin} e \texttt{bmi} vengono identificati come dati mancanti e sostituiti con \texttt{NaN}.
+
+  \item \textbf{Imputazione mediante mediana}: per ciascuna delle colonne sopra indicate, i valori mancanti vengono imputati utilizzando la mediana della distribuzione della rispettiva variabile calcolata sui valori non nulli. La scelta della mediana rispetto alla media è motivata dalla maggiore robustezza di questa statistica in presenza di outlier e distribuzioni asimmetriche, caratteristiche comuni nei dati clinici.
+
+  \item \textbf{Partizionamento del dataset}: il dataset preprocessato viene suddiviso in training set (70\%, 537 osservazioni) e holdout set (30\%, 231 osservazioni). La stratificazione garantisce che la proporzione tra classi positive e negative rimanga costante nei due sottoinsiemi, preservando la distribuzione originale della variabile da predire.
+\end{enumerate}
+
+Il training set viene utilizzato esclusivamente per l'addestramento del modello
+generativo CTGAN, mentre l'holdout set viene riservato per la valutazione
+finale delle prestazioni dei modelli predittivi addestrati sui dati sintetici.
+
+\subsection{Architettura CTGAN}
+
+Per la sintesi dei dati è stato impiegato il framework \texttt{SDV} (Synthetic
+Data Vault) versione 1.0, nello specifico il modello \texttt{CTGANSynthesizer}.
+CTGAN (Conditional Tabular GAN) rappresenta una variante specializzata delle
+Generative Adversarial Networks, specificatamente progettata per la generazione
+di dati tabulari eterogenei, che supera le limitazioni delle GAN tradizionali
+nella modellazione di distribuzioni multimodali e nella gestione simultanea di
+variabili continue e categoriche.
+
+\subsubsection{Configurazione del training}
+
+Il processo di addestramento è stato configurato con i seguenti iperparametri:
+
+\begin{itemize}
+  \item \textbf{Numero di epoche}: 3000 iterazioni complete sul training set
+  \item \textbf{Batch size}: 500 campioni per batch
+  \item \textbf{Learning rate}: $2 \times 10^{-4}$ sia per il generatore che per il discriminatore
+  \item \textbf{Ottimizzatore}: Adam con parametri di default ($\beta_1 = 0.9$, $\beta_2 = 0.999$)
+\end{itemize}
+
+Tali iperparametri sono stati selezionati sulla base delle raccomandazioni
+della letteratura e attraverso sperimentazione preliminare, al fine di
+garantire una convergenza stabile del modello preservando la qualità dei
+campioni sintetici generati.
+
+\subsubsection{Meccanismo di funzionamento}
+
+Il processo di apprendimento di CTGAN si articola attraverso il seguente
+algoritmo adversarial:
+
+\begin{enumerate}
+  \item Il generatore $G$ apprende una funzione di mappatura $G: \mathcal{Z}
+          \rightarrow \mathcal{X}$ che trasforma vettori di rumore $z \sim \mathcal{N}(0,
+          I)$ in campioni sintetici $\tilde{x} = G(z)$ che approssimano la distribuzione
+        dei dati reali $x \sim p_{data}$.
+
+  \item Il discriminatore $D$ apprende una funzione $D: \mathcal{X} \rightarrow [0,1]$
+        che stima la probabilità che un campione provenga dalla distribuzione reale
+        piuttosto che da quella generata.
+
+  \item I due modelli vengono addestrati alternando aggiornamenti del discriminatore e
+        del generatore, ottimizzando rispettivamente le seguenti funzioni obiettivo:
+
+        \begin{equation}
+          \mathcal{L}_D = -\mathbb{E}_{x \sim p_{data}}[\log D(x)] - \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]
+        \end{equation}
+
+        \begin{equation}
+          \mathcal{L}_G = -\mathbb{E}_{z \sim p_z}[\log D(G(z))]
+        \end{equation}
+\end{enumerate}
+
+Una caratteristica distintiva di CTGAN rispetto alle GAN tradizionali è
+l'utilizzo di tecniche specializzate per dati tabulari:
+
+\begin{itemize}
+  \item \textbf{Mode-specific normalization}: le variabili continue vengono normalizzate utilizzando una Gaussian Mixture Model che identifica automaticamente le diverse modalità della distribuzione, permettendo di catturare distribuzioni multimodali complesse.
+
+  \item \textbf{Conditional generation}: durante il training, il generatore viene condizionato su specifiche categorie della variabile target, garantendo che il dataset sintetico mantenga la distribuzione delle classi del dataset reale.
+
+  \item \textbf{Training-by-sampling}: per gestire il bilanciamento delle classi, i campioni vengono selezionati durante il training in modo da garantire una rappresentazione uniforme di tutte le modalità delle variabili categoriche.
+\end{itemize}
+
+\subsection{Livelli di privacy differenziale}
+
+Al fine di analizzare quantitativamente il trade-off tra protezione della
+privacy e preservazione dell'utilità, sono stati generati tre dataset sintetici
+con differenti garanzie formali di privacy:
+
+\begin{enumerate}
+  \item \textbf{Nessuna privacy} (\texttt{synthetic\_no\_privacy.csv}): Il modello CTGAN genera dati sintetici senza alcuna protezione aggiuntiva della privacy. I campioni prodotti replicano fedelmente le caratteristiche statistiche del training set.
+
+  \item \textbf{Privacy moderata} (\texttt{synthetic\_privacy\_moderate.csv}, $\varepsilon = 5.0$): Dopo la generazione tramite CTGAN, viene applicato rumore differenzialmente privato mediante il meccanismo di Laplace con dominio limitato, mediante l'utilizzo del parametro $\varepsilon = 5.0$.
+
+  \item \textbf{Privacy forte} (\texttt{synthetic\_privacy\_strong.csv}, $\varepsilon = 1.0$): Viene applicato un livello più rigoroso di protezione della privacy attraverso il medesimo meccanismo di Laplace ma con $\varepsilon = 1.0$, garantendo maggior privacy.
+\end{enumerate}
+
+Il parametro $\varepsilon$ (epsilon) quantifica formalmente il livello di
+privacy garantito: valori più bassi corrispondono a maggiori garanzie di
+privacy ma introducono maggiore distorsione nei dati. Un valore di $\varepsilon
+  = 1.0$ è generalmente considerato uno standard rigoroso per applicazioni ad
+alta sensibilità, mentre $\varepsilon = 5.0$ rappresenta un compromesso più
+permissivo ma ancora significativo.
+
+\subsection{Implementazione della privacy differenziale}
+
+L'applicazione della privacy differenziale avviene mediante la libreria
+\texttt{diffprivlib}, un'implementazione open-source di algoritmi
+differenzialmente privati conforme agli standard crittografici. Per ciascuna
+variabile numerica del dataset sintetico (escludendo la variabile target
+binaria), viene applicato il meccanismo \texttt{LaplaceBoundedDomain}, che
+garantisce la privacy differenziale mantenendo i valori entro un intervallo
+predefinito.
+
+\subsubsection{Meccanismo di Laplace con dominio limitato}
+
+Per ogni feature $f$ e ogni valore $x_i^f$ nel dataset sintetico, il valore
+perturbato è calcolato come:
+
+\begin{equation}
+  \tilde{x}_i^f = \text{clip}\left(x_i^f + \text{Lap}\left(\frac{s_f}{\varepsilon}\right), l_f, u_f\right)
+\end{equation}
+
+dove:
+\begin{itemize}
+  \item $\text{Lap}(\lambda)$ denota una variabile aleatoria estratta dalla distribuzione di Laplace con parametro di scala $\lambda = \frac{s_f}{\varepsilon}$
+  \item $s_f = u_f - l_f$ rappresenta la sensibilità globale della query, definita come la differenza tra il limite superiore e inferiore del dominio
+  \item $l_f$ e $u_f$ sono rispettivamente il limite inferiore e superiore del dominio della feature
+  \item $\varepsilon$ è il parametro di privacy
+  \item La funzione $\text{clip}(x, l, u) = \max(l, \min(x, u))$ assicura il rispetto
+        rigoroso dei vincoli di dominio
+\end{itemize}
+
+La distribuzione di Laplace è definita dalla funzione di densità di
+probabilità:
+
+\begin{equation}
+  f(x|\mu, b) = \frac{1}{2b} \exp\left(-\frac{|x - \mu|}{b}\right)
+\end{equation}
+
+dove $\mu$ è il parametro di posizione (tipicamente 0) e $b =
+  \frac{s_f}{\varepsilon}$ è il parametro di scala.
+
+\subsubsection{Determinazione dei limiti di dominio}
+
+I limiti inferiore $l_f$ e superiore $u_f$ per ciascuna variabile sono
+determinati sulla base della distribuzione empirica nel dataset reale, secondo
+le seguenti regole:
+
+\begin{itemize}
+  \item \textbf{Variabili discrete non negative} (\texttt{pregnancies}, \texttt{age}):
+        \begin{equation}
+          l_f = \max(0, \min_{i}(x_i^f)), \quad u_f = \max_{i}(x_i^f) + 2
+        \end{equation}
+        Il margine di +2 unità sul limite superiore permette una limitata extrapolazione per età e numero di gravidanze.
+
+  \item \textbf{Variabili continue} (\texttt{glucose}, \texttt{blood\_pressure}, \texttt{skin\_thickness}, \texttt{insulin}, \texttt{bmi}, \texttt{diabetes\_pedigree}):
+        \begin{equation}
+          l_f = Q_{0.01}^f - 0.05 \cdot (Q_{0.99}^f - Q_{0.01}^f), \quad u_f = Q_{0.99}^f + 0.05 \cdot (Q_{0.99}^f - Q_{0.01}^f)
+        \end{equation}
+        dove $Q_p^f$ denota il p-esimo percentile della distribuzione della feature $f$ nel dataset reale. L'utilizzo dei percentili 1° e 99° anziché dei valori minimo e massimo assoluti rende il metodo robusto rispetto a outlier estremi. Il margine aggiuntivo del 5\% dell'intervallo interquantile consente una moderata variabilità oltre i valori osservati.
+\end{itemize}
+
+\subsubsection{Garanzie teoriche di privacy}
+
+Il meccanismo implementato garantisce $\varepsilon$-privacy differenziale
+secondo la seguente definizione formale:
+
+\begin{definition}[$\varepsilon$-Privacy Differenziale]
+  Un meccanismo randomizzato $\mathcal{M}$ soddisfa $\varepsilon$-privacy differenziale se per ogni coppia di dataset adiacenti $D$ e $D'$ (che differiscono per un singolo record) e per ogni sottoinsieme misurabile $S$ dello spazio degli output:
+  \begin{equation}
+    \Pr[\mathcal{M}(D) \in S] \leq e^\varepsilon \cdot \Pr[\mathcal{M}(D') \in S]
+  \end{equation}
+\end{definition}
+
+Questa proprietà garantisce che la presenza o assenza di un singolo individuo
+nel dataset abbia un impatto limitato (quantificato da $\varepsilon$) sulla
+distribuzione degli output, rendendo computazionalmente difficile determinare
+se un particolare individuo ha contribuito al dataset.
+
+\subsection{Post-processing e normalizzazione}
+
+Successivamente all'applicazione del rumore differenzialmente privato, viene
+eseguita una fase di post-processing denominata \textit{clipping conservativo},
+che garantisce la coerenza dei dati sintetici con i vincoli del dominio
+applicativo senza violare le garanzie di privacy differenziale (il
+post-processing preserva la privacy differenziale secondo il teorema di
+post-processing).
+
+Le operazioni di post-processing comprendono:
+
+\begin{enumerate}
+  \item \textbf{Arrotondamento delle variabili discrete}: le variabili \texttt{pregnancies}, \texttt{age}, \texttt{glucose}, \texttt{blood\_pressure}, \texttt{skin\_thickness} e \texttt{insulin} vengono arrotondate al più vicino intero mediante la funzione $\lfloor x + 0.5 \rfloor$.
+
+  \item \textbf{Clipping ai percentili}: per ciascuna variabile continua, i valori vengono limitati all'intervallo $[Q_{0.01}, Q_{0.99}]$ calcolato sul dataset reale:
+        \begin{equation}
+          x_i^f \leftarrow \text{clip}(x_i^f, Q_{0.01}^f, Q_{0.99}^f)
+        \end{equation}
+
+  \item \textbf{Normalizzazione della variabile target}: la variabile \texttt{outcome} viene convertita in valori binari $\{0, 1\}$ mediante arrotondamento e successivo clipping:
+        \begin{equation}
+          outcome_i \leftarrow \text{clip}(\lfloor outcome_i + 0.5 \rfloor, 0, 1)
+        \end{equation}
+
+  \item \textbf{Conversione dei tipi}: le variabili discrete vengono convertite al tipo intero (\texttt{int64}), mentre le variabili continue mantengono la precisione a virgola mobile (\texttt{float64}).
+\end{enumerate}
+
+Questa procedura assicura che i dati sintetici generati rispettino
+rigorosamente i vincoli di tipo e di dominio delle variabili originali,
+preservando al contempo le garanzie formali di privacy differenziale introdotte
+nella fase precedente.
+
+\subsection{Validazione statistica preliminare}
+
+Al termine del processo di generazione, viene condotta un'analisi comparativa
+sistematica tra i dataset reali e sintetici per verificare la preservazione
+delle proprietà statistiche fondamentali. Tale validazione fornisce una prima
+indicazione qualitativa del trade-off tra privacy e utilità prima di procedere
+con le valutazioni quantitative approfondite.
+
+Le metriche di confronto includono:
+
+\begin{itemize}
+  \item \textbf{Statistiche univariate}: per ciascuna variabile vengono confrontati minimo, massimo, media, mediana, deviazione standard e quartili tra dataset reale e sintetici.
+
+  \item \textbf{Distribuzione empirica}: vengono generati istogrammi sovrapposti per visualizzare le distribuzioni empiriche e identificare eventuali discrepanze significative.
+
+  \item \textbf{Matrice di correlazione}: viene calcolata la matrice di correlazione di Pearson per entrambi i dataset e ne viene valutata la somiglianza attraverso la distanza di Frobenius:
+        \begin{equation}
+          d_{Frob}(C_{real}, C_{synth}) = \sqrt{\sum_{i=1}^{n}\sum_{j=1}^{n}(C_{real}^{ij} - C_{synth}^{ij})^2}
+        \end{equation}
+
+  \item \textbf{Distribuzione della variabile target}: viene verificata la preservazione della proporzione tra classi positive e negative.
+\end{itemize}
+
+I risultati di questa analisi preliminare sono riportati in forma tabellare per
+ciascuno dei tre dataset sintetici generati, evidenziando come l'incremento
+delle garanzie di privacy ($\varepsilon$ decrescente) influenzi
+progressivamente la fedeltà statistica rispetto al dataset originale.
+
+\subsection{Archiviazione dei dataset}
+
+I tre dataset sintetici generati vengono persistiti in formato CSV per le
+successive fasi di analisi:
+
+\begin{itemize}
+  \item \texttt{synthetic\_no\_privacy.csv}: 537 campioni sintetici senza protezione della privacy
+  \item \texttt{synthetic\_privacy\_moderate.csv}: 537 campioni sintetici con $\varepsilon = 5.0$
+  \item \texttt{synthetic\_privacy\_strong.csv}: 537 campioni sintetici con $\varepsilon = 1.0$
+\end{itemize}
+
+Parallelamente vengono archiviati anche i dataset reali utilizzati:
+
+\begin{itemize}
+  \item \texttt{diabetes\_train.csv}: training set reale (537 osservazioni)
+  \item \texttt{diabetes\_holdout.csv}: holdout set reale (231 osservazioni)
+\end{itemize}
+\subsection{Validazione statistica preliminare}
+
+Al termine del processo di generazione, viene condotta un'analisi comparativa
+sistematica tra i dataset reali e sintetici per verificare la preservazione
+delle proprietà statistiche fondamentali. Tale validazione fornisce una prima
+indicazione qualitativa del trade-off tra privacy e utilità prima di procedere
+con le valutazioni quantitative approfondite.
+
+Le metriche di confronto includono:
+
+\begin{itemize}
+  \item \textbf{Statistiche univariate}: per ciascuna variabile vengono confrontati minimo, massimo, media, mediana, deviazione standard e quartili tra dataset reale e sintetici.
+
+  \item \textbf{Distribuzione empirica}: vengono generati istogrammi sovrapposti per visualizzare le distribuzioni empiriche e identificare eventuali discrepanze significative.
+
+  \item \textbf{Matrice di correlazione}: viene calcolata la matrice di correlazione di Pearson per entrambi i dataset e ne viene valutata la somiglianza attraverso la distanza di Frobenius:
+        \begin{equation}
+          d_{Frob}(C_{real}, C_{synth}) = \sqrt{\sum_{i=1}^{n}\sum_{j=1}^{n}(C_{real}^{ij} - C_{synth}^{ij})^2}
+        \end{equation}
+
+  \item \textbf{Distribuzione della variabile target}: viene verificata la preservazione della proporzione tra classi positive e negative.
+\end{itemize}
+
 
 %----------------------------------------------------------
 
-\printbibliography
-
-%----------------------------------------------------------
-
-\end{document}
+\end{document}  

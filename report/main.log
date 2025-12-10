@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.7.17)  29 NOV 2025 11:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.7.17)  10 DEC 2025 11:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1462,47 +1462,58 @@ Language: italian 2024/10/10 v.1.5.01 Italian support for the babel system
 )) (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/it\babel-italian.tex
 Package babel Info: Importing font and identification data for italian
 (babel)             from babel-it.ini. Reported on input line 11.
+) (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks60
+\thm@bodyfont=\toks61
+\thm@headfont=\toks62
+\thm@notefont=\toks63
+\thm@headpunct=\toks64
+\thm@preskip=\skip195
+\thm@postskip=\skip196
+\thm@headsep=\skip197
+\dth@everypar=\toks65
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'italian'.
-LaTeX Font Info:    Trying to load font information for T1+stix2 on input line 8.
+LaTeX Font Info:    Trying to load font information for T1+stix2 on input line 11.
  (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\t1stix2.fd
 File: t1stix2.fd 2018/04/02 v2.0.0-latex stix2 T1 font definitions
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for LS1/stix2/m/n on input line 8.
-LaTeX Font Info:    Trying to load font information for LS1+stix2 on input line 8.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for LS1/stix2/m/n on input line 11.
+LaTeX Font Info:    Trying to load font information for LS1+stix2 on input line 11.
  (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls1stix2.fd
 File: ls1stix2.fd 2018/04/02 v2.0.0-latex stix2 LS1 font definitions
 )
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for LS2/stix2/m/n on input line 8.
-LaTeX Font Info:    Trying to load font information for LS2+stix2 on input line 8.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for LS2/stix2/m/n on input line 11.
+LaTeX Font Info:    Trying to load font information for LS2+stix2 on input line 11.
  (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls2stix2.fd
 File: ls2stix2.fd 2018/04/02 v2.0.0-latex stix2 LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
  (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count522
@@ -1510,21 +1521,15 @@ LaTeX Font Info:    ... okay on input line 8.
 \scratchbox=\box101
 \nofMPsegments=\count523
 \nofMParguments=\count524
-\everyMPshowfont=\toks60
+\everyMPshowfont=\toks66
 \MPscratchCnt=\count525
 \MPscratchDim=\dimen398
 \MPnumerator=\count526
 \makeMPintoPDFobject=\count527
-\everyMPtoPDFconversion=\toks61
+\everyMPtoPDFconversion=\toks67
 ) (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
@@ -1570,9 +1575,9 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Command `\dddot' is already robust on input line 8.
-LaTeX Info: Command `\ddddot' is already robust on input line 8.
-Package hyperref Info: Link coloring ON on input line 8.
+LaTeX Info: Command `\dddot' is already robust on input line 11.
+LaTeX Info: Command `\ddddot' is already robust on input line 11.
+Package hyperref Info: Link coloring ON on input line 11.
 Package biblatex Info: Trying to load language 'italian'...
 Package biblatex Info: ... file 'italian.lbx' found.
 (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\italian.lbx
@@ -1587,18 +1592,18 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' not found.
 
 No file main.bbl.
-Package biblatex Info: Reference section=0 on input line 8.
-Package biblatex Info: Reference segment=0 on input line 8.
+Package biblatex Info: Reference section=0 on input line 11.
+Package biblatex Info: Reference segment=0 on input line 11.
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen399
 \MT@vwid@rightmargin=\dimen400
-LaTeX Info: Redefining \microtypecontext on input line 8.
-Package microtype Info: Applying patch `item' on input line 8.
-Package microtype Info: Applying patch `toc' on input line 8.
-Package microtype Info: Applying patch `eqnum' on input line 8.
-Package microtype Info: Applying patch `footnote' on input line 8.
-Package microtype Info: Applying patch `verbatim' on input line 8.
-LaTeX Info: Redefining \microtypesetup on input line 8.
+LaTeX Info: Redefining \microtypecontext on input line 11.
+Package microtype Info: Applying patch `item' on input line 11.
+Package microtype Info: Applying patch `toc' on input line 11.
+Package microtype Info: Applying patch `eqnum' on input line 11.
+Package microtype Info: Applying patch `footnote' on input line 11.
+Package microtype Info: Applying patch `verbatim' on input line 11.
+LaTeX Info: Redefining \microtypesetup on input line 11.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1612,54 +1617,115 @@ Package microtype Info: No adjustment of character kerning.
 (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
-LaTeX Info: Redefining \it@ocap on input line 8.
-LaTeX Info: Redefining \it@ccap on input line 8.
+LaTeX Info: Redefining \it@ocap on input line 11.
+LaTeX Info: Redefining \it@ccap on input line 11.
  [1
 
 {C:/Users/Giorgia/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-t1.enc}]
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 32.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 35.
  (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 11.39996pt on input line 32.
+(Font)              scaled to size 11.39996pt on input line 35.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 13.67995pt on input line 32.
+(Font)              scaled to size 13.67995pt on input line 35.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 13.67995pt on input line 32.
+(Font)              scaled to size 13.67995pt on input line 35.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 11.39996pt on input line 67.
-LaTeX Font Info:    Trying to load font information for TS1+stix2 on input line 70.
+(Font)              scaled to size 11.39996pt on input line 70.
+LaTeX Font Info:    Trying to load font information for TS1+stix2 on input line 73.
  (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ts1stix2.fd
 File: ts1stix2.fd 2018/04/02 v2.0.0-latex stix2 TS1 font definitions
 )
 Package microtype Info: Character `textflorin ' is missing
 (microtype)             in font `TS1/stix2/m/n/12'.
 (microtype)             Ignoring protrusion settings for this character.
-
-
-LaTeX Warning: Empty bibliography on input line 96.
-
-
-AED: lastpage setting LastPage
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.64998pt on input line 100.
+(Font)              scaled to size 6.64998pt on input line 112.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 100.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 112.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 100.
+(Font)              scaled to size 6.64998pt on input line 112.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.64998pt on input line 100.
+(Font)              scaled to size 6.64998pt on input line 112.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.100 \end{document}
-                     [1{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-ts1.enc}] (main.aux)
+l.112   \item \textbf
+                     {Glucose}: concentrazione plasmatica di glucosio a 2 or... [1{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-ts1.enc}]
+LaTeX Font Info:    Trying to load font information for LS1+stix2scr on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls1stix2scr.fd
+File: ls1stix2scr.fd 2018/04/02 v2.0.0-latex stix2 script LS1 font definitions
+)
+LaTeX Font Info:    Trying to load font information for LS2+stix2ex on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls2stix2ex.fd
+File: ls2stix2ex.fd 2018/04/02 v2.0.0-latex stix2 extentions LS2 font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Trying to load font information for LS1+stix2frak on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls1stix2frak.fd
+File: ls1stix2frak.fd 2018/04/02 v2.0.0-latex stix2 fraktur LS1 font definitions
+)
+LaTeX Font Info:    Trying to load font information for LS1+stix2bb on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls1stix2bb.fd
+File: ls1stix2bb.fd 2018/04/02 v2.0.0-latex stix2 blackboard LS1 font definitions
+)
+LaTeX Font Info:    Trying to load font information for LS2+stix2cal on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls2stix2cal.fd
+File: ls2stix2cal.fd 2018/04/02 v2.0.0-latex stix2 calligraphic LS2 font definitions
+)
+LaTeX Font Info:    Trying to load font information for LS1+stix2sf on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls1stix2sf.fd
+File: ls1stix2sf.fd 2018/04/02 v2.0.0-latex stix2 sans-serif LS1 font definitions
+)
+LaTeX Font Info:    Trying to load font information for LS2+stix2tt on input line 115.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/fonts/stix2-type1\ls2stix2tt.fd
+File: ls2stix2tt.fd 2018/04/02 v2.0.0-latex stix2 typewriter LS2 font definitions
+)
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 141.
+ (C:\Users\Giorgia\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.40245pt on input line 162.
+LaTeX Font Info:    Font shape `T1/phv/b/it' in size <10.95> not available
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 162.
+LaTeX Font Info:    Font shape `T1/phv/b/sl' will be
+(Font)              scaled to size 10.40245pt on input line 162.
+ [2{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-mathit.enc}{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-mathrm.enc}{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}] [3{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-mathcal.enc}{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-mathsf.enc}{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-mathbb.enc}]
+Overfull \hbox (20.6664pt too wide) in paragraph at lines 289--290
+[]\T1/stix2/b/n/12 (-20) Variabili con-ti-nue \T1/stix2/m/n/12 (-20) (\T1/lmtt/m/n/12 glucose\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 blood_pressure\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 skin_thickness\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 insulin\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 bmi\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 diabetes_pedigree\T1/stix2/m/n/12 (-20) ): 
+ []
+
+[4{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-mathex.enc}{C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/stix2-type1/stix2-mathscr.enc}]
+Overfull \hbox (9.7363pt too wide) in paragraph at lines 325--326
+[]\T1/stix2/b/n/12 (-20) Arrotondamento del-le va-ria-bi-li di-scre-te\T1/stix2/m/n/12 (-20) : le va-ria-bi-li \T1/lmtt/m/n/12 pregnancies\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 age\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 glucose\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 blood_pressure\T1/stix2/m/n/12 (-20) ,
+ []
+
+[5] 
+AED: lastpage setting LastPage
+[6] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -1669,17 +1735,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 68598 strings out of 474486
- 1513991 string characters out of 5742811
- 2631739 words of memory out of 5000000
- 89983 multiletter control sequences out of 15000+600000
- 638754 words of font info for 109 fonts, out of 8000000 for 9000
+ 69080 strings out of 474486
+ 1522956 string characters out of 5742811
+ 2637370 words of memory out of 5000000
+ 90280 multiletter control sequences out of 15000+600000
+ 697014 words of font info for 198 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 137i,12n,143p,1039b,1313s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (2 pages, 449073 bytes).
+ 137i,13n,143p,1039b,1313s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Math.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvbo8a.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on main.pdf (7 pages, 764126 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
- 5 named destinations out of 1000 (max. 500000)
- 40997 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 214 PDF objects out of 1000 (max. 8388607)
+ 48 named destinations out of 1000 (max. 500000)
+ 55957 words of extra memory for PDF output out of 61914 (max. 10000000)
 
