@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.7.17)  10 DEC 2025 11:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.7.17)  16 DEC 2025 10:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1723,9 +1723,50 @@ Overfull \hbox (9.7363pt too wide) in paragraph at lines 325--326
 []\T1/stix2/b/n/12 (-20) Arrotondamento del-le va-ria-bi-li di-scre-te\T1/stix2/m/n/12 (-20) : le va-ria-bi-li \T1/lmtt/m/n/12 pregnancies\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 age\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 glucose\T1/stix2/m/n/12 (-20) , \T1/lmtt/m/n/12 blood_pressure\T1/stix2/m/n/12 (-20) ,
  []
 
-[5] 
+[5]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 478.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\varepsilon' on input line 478.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 478.
+
+[7]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 533.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\varepsilon' on input line 533.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 533.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8] [9]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10] [11]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12] [13] [14] 
 AED: lastpage setting LastPage
-[6] (main.aux)
+[15] [16] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -1735,17 +1776,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 69080 strings out of 474486
- 1522956 string characters out of 5742811
- 2637370 words of memory out of 5000000
- 90280 multiletter control sequences out of 15000+600000
- 697014 words of font info for 198 fonts, out of 8000000 for 9000
+ 69346 strings out of 474486
+ 1527665 string characters out of 5742811
+ 2654091 words of memory out of 5000000
+ 90418 multiletter control sequences out of 15000+600000
+ 745514 words of font info for 284 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  137i,13n,143p,1039b,1313s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Math.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvbo8a.pfb><C:/Users/Giorgia/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (7 pages, 764126 bytes).
+Output written on main.pdf (17 pages, 843272 bytes).
 PDF statistics:
- 214 PDF objects out of 1000 (max. 8388607)
- 48 named destinations out of 1000 (max. 500000)
- 55957 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 371 PDF objects out of 1000 (max. 8388607)
+ 95 named destinations out of 1000 (max. 500000)
+ 64325 words of extra memory for PDF output out of 74296 (max. 10000000)
 
