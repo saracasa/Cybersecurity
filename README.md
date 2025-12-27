@@ -1,63 +1,60 @@
-# PROGETTO 7 - Privacy-preserving synthetic healthcare data generation
+# PROJECT 7 - Privacy-preserving synthetic healthcare data generation
 
-## Domanda di Ricerca
+## Research question
+Can synthetic healthcare data generated for cybersecurity protection maintain sufficient statistical fidelity and research utility to replace real patient data in medical research and machine learning applications?
 
-Può il dato sanitario sintetico generato per la protezione della sicurezza informatica mantenere una sufficienza fedeltà statistica e utilità di ricerca tali da sostituire i dati reali dei pazienti nella ricerca medica e nelle applicazioni di machine learning?
+## Introduction
+Healthcare data breaches are increasingly common and devastating, yet researchers need access to realistic datasets for medical AI development and clinical trials. Synthetic data generation offers a cybersecurity solution: if breached, synthetic datasets contain no real patient information, minimizing legal liability and patient harm. However, synthetic data is only valuable if it preserves the properties necessary for valid research. This project evaluates the fundamental trade-off: is it possible to generate synthetic healthcare data that is simultaneously secure against privacy attacks and useful for medical research?
 
-## Introduzione
+Specifically, the study compares the application of three privacy guarantee levels (no privacy, moderate privacy and strong privacy) to identify which techniques best balance privacy protection with data utility.
 
-Le violazioni dei dati sanitari sono sempre più comuni e devastanti, con cartelle cliniche vendute a oltre 250 dollari sui mercati del dark web rispetto ai 5 dollari delle carte di credito. Il GDPR e l'HIPAA impongono sanzioni severe per l'esposizione dei dati, eppure i ricercatori necessitano di accedere a dataset realistici per lo sviluppo dell'IA medica e per gli studi clinici.
+## Replicability
+The project was developed to ensure maximum transparency and to be fully replicable by running the notebook `progettoCybersecurity.ipynb`. The entire workflow is managed within the `progettoCybersecurity.ipynb` notebook, which offers the user two distinct operational paths based on their computational needs:
 
-La generazione di dati sintetici offre una soluzione di cybersecurity: se violati, i dataset sintetici non contengono alcuna informazione reale sui pazienti, minimizzando la responsabilità legale e il danno al paziente.
+- **Full reproduction of the experiment (from scratch):** the notebook downloads the original dataset from Kaggle, performs preprocessing, trains the CTGAN and DP-CTGAN models, and generates new synthetic datasets usable for all subsequent phases.
+- **Rapid analysis and consultation of our experiment results (loading pre-existing data):** to facilitate the project review without the need for high computational resources or long waiting times, it is possible to proceed in two ways:
+  - **Static consultation:** The notebook is delivered with the most important cell outputs already rendered. It is therefore possible to analyze graphs, quality metrics, and MIA attack results directly from the pre-executed version.
+  - **Partial execution (data loading):** It is possible to skip the training phases by loading the already generated synthetic datasets. In this way, the user can instantly re-run only the analysis cells, verifying the validity of the results in real-time.
 
-Tuttavia, il dato sintetico è prezioso solo se preserva le proprietà statistiche necessarie per una ricerca valida. Questo progetto valuta il compromesso fondamentale: è possibile generare dati sanitari sintetici che siano contemporaneamente sicuri contro gli attacchi alla privacy (re-identificazione, inferenza di appartenenza) e utili per la ricerca legittima (mantengono correlazioni, addestrano modelli di ML accurati, consentono un'analisi statistica valida)?
+## Notebook structure
+The project is divided into the following main phases:
 
-Lo studio confronterà diversi metodi di generazione—dalle semplici approcci statistici a GAN avanzate con privacy differenziale—misurando sia le loro proprietà di sicurezza (resistenza agli attacchi) sia la loro utilità di ricerca (somiglianza statistica, prestazioni di ML). I risultati determineranno quali tecniche bilanciano meglio la protezione della privacy con l'utilità del dato.
+1. **Installation of libraries and imports necessary for the project.**
+2. **Loading and preprocessing:** importation of the "Diabetes Health Indicators" dataset from Kaggle (https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset/data?select=diabetes_binary_health_indicators_BRFSS2015.csv) and its subdivision into train and holdout sets, or the use of predefined datasets to ensure exact reproducibility of the project.
+3. **Synthetic data generation:**
+   - For the dataset without privacy guarantees, the `CTGANSynthesizer` model (`Synthetic Data Vault` (SDV) v1.29.1) was employed.
+   - For the protected datasets, the `DP-CTGAN` model from the `SmartNoise-Synth` library was used, which extends CTGAN by integrating Differential Privacy principles. The level of privacy guaranteed by the generative model is determined by the epsilon parameter ($\varepsilon$): high values of $\varepsilon$ (> 2.0) correspond to low privacy protection, while lower values (0.1 – 2.0) indicate high protection. In our study, we set $\varepsilon$ = 4.0 for moderate privacy and $\varepsilon$ = 2.0 for strong privacy.
+4. **Evaluation of synthetic data similarity compared to real data:**
+   - Analysis of synthetic data quality through the _Diagnostic Report_ and _Quality Score_ provided by SDV. The _Diagnostic Report_ evaluates whether the synthetic dataset is structurally valid, i.e., if it respects the formal and semantic constraints defined by the original data schema. The _Quality Score_ provides a quantitative measure of the statistical fidelity of the synthetic data compared to the real dataset.
+   - Evaluation of statistical similarity by comparing means, standard deviations, variable distributions, correlation matrices, and Frobenius distance between synthetic and real data.
+5. **Evaluation of utility for medical research:**
 
-## Guida all'implementazione
+   The goal of this phase is to verify if the clinical knowledge extracted from the synthetic dataset is transferable to real-world contexts. To test this research utility, we adopted the TSTR (Train on Synthetic, Test on Real) protocol: models are trained exclusively on synthetic data and their predictive capacity is measured on real data never seen by the generator (holdout set).
 
-Quadro di confronto principale:
+   To ensure a robust evaluation, four different Machine Learning architectures were employed, chosen for their different complexity and algorithmic nature:
+     - Logistic Regression
+     - Random Forest
+     - XGBoost
+     - MLP (Multi-Layer Perceptron)
+    
+    The effectiveness of the models was quantified via ROC-AUC. This metric was chosen because:
+     - **Threshold independence:** It evaluates the model's ability to distinguish between classes (e.g., diabetic vs. non-diabetic) at all possible confidence levels.
+     - **Robustness to imbalance:** It is more reliable than simple accuracy in medical datasets where class distribution may be imbalanced.
+7. **Privacy evaluation:**
 
-- Generare dataset sintetici usando metodi con diversi livelli di privacy (nessuna privacy, moderata, forte)
-- Verificare la somiglianza statistica: confrontare distribuzioni, matrici di correlazione e test statistici standard
-- Valutare l'utilità per la ricerca: addestrare modelli di predizione delle malattie su dati sintetici e valutarli su un set reale di holdout
-- Valutare la privacy: implementare attacchi di membership inference per misurare la perdita di informazioni
-- Visualizzare il trade-off: tracciare livello di privacy vs. metriche di utilità per identificare il bilanciamento ottimale
+     A _Membership Inference Attack_ was implemented to measure information loss. The attack was formulated as a binary classification problem. The attacker is an XGBoost classifier trained on a dataset composed exclusively of real data labeled as members, coming from the generator's training set, and non-members, coming from a never-before-seen holdout dataset. The attacker does not have direct access to the generator but only observes the considered synthetic dataset and, based on this, builds features that measure how well each real record is represented by the synthetic data.
+    - The first feature is the **distance to the k-nearest neighbors**, which measures how close a real record is to the k nearest synthetic samples.
+    - The second is **local density**, which evaluates how much synthetic data mass is concentrated around that record.
+    - Finally, the **reconstruction error** measures how well the relationships between the features of the real record are consistent with those learned from the synthetic dataset.
+    
+    Attack performance is evaluated via ROC-AUC, which is independent of the decision threshold. A ROC-AUC equal to 0.5 indicates a random attack, while higher values represent a loss of privacy.
 
-## Dataset pubblici
+10. **Privacy-Utility trade-off analysis:**
 
-1. UCI Diabetes Dataset — RACCOMANDATO
-    - Link: <https://archive.ics.uci.edu/dataset/34/diabetes>
-    - Descrizione: Dataset piccolo e facilmente gestibile, ideale per prototipare metodi.
-    - Contiene: 768 pazienti con predittori clinici e outcome sul diabete.
-    - Ideale per: Sviluppo e test iniziali dei metodi.
+    We related two metrics: on the horizontal axis, clinical utility, measured via the ROC-AUC of the logistic regression model (which is the most robust among those analyzed and the ROC-AUC best reflects the actual utility of the model), and on the vertical axis, the privacy risk, measured by the ROC-AUC of the attack.
 
-2. UCI Heart Disease Dataset
-    - Link: <https://archive.ics.uci.edu/dataset/45/heart+disease>
-    - Descrizione: Dati multi‑attributo sulla salute cardiovascolare.
-    - Contiene: Caratteristiche cliniche e diagnosi di cardiopatia.
-    - Ideale per: Verificare la generalizzazione su domini medici diversi.
+    To guide the interpretation, we defined two strategic thresholds:
+    - A **threshold of acceptable utility** at 0.70, below which the model would not be clinically relevant;
+    - An **optimal privacy threshold** at 0.50, which represents the random level for the attack: values close to 0.50 indicate complete anonymity protection.
 
-3. MIMIC‑III Clinical Database (Avanzato)
-    - Link: <https://physionet.org/content/mimiciii/>
-    - Descrizione: Cartelle cliniche reali di terapia intensiva provenienti da oltre 40.000 pazienti.
-    - Contiene: Demografia, segni vitali, esami di laboratorio, farmaci, diagnosi.
-    - Nota: L'accesso richiede accreditamento e approvazione etica per uso di ricerca.
-    - Ideale per: Valutazioni complete su dati complessi e realistici.
-
-## Tool e risorse suggerite
-
-- Librerie per la generazione di dati sintetici: SDV (Synthetic Data Vault) con CTGAN; synthcity (con opzioni per la privacy)
-- Strumenti per la privacy: libreria Google Differential Privacy; diffprivlib (IBM)
-- Valutazione: scikit-learn per test ML; scipy.stats per confronti statistici
-
-## Referenze chiave
-
-- Stadler, T., et al. (2022). "Synthetic Data - Anonymisation Groundhog Day."
-USENIX Security. [Privacy vulnerabilities in synthetic data]
-- Jordon, J., et al. (2022). "Synthetic Data - What, Why and How?" The Royal
-Society. [Comprehensive overview with healthcare focus]
-- Xu, L., et al. (2019). "Modeling Tabular Data using Conditional GAN."
-NeurIPS. [CTGAN baseline method]
-- Dwork, C., & Roth, A. (2014). "The Algorithmic Foundations of Differential
-Privacy." Foundations and Trends in TCS. [Privacy theory fundamentals]
+    Consequently, the goal is to identify the model located in the green area of the graph, where clinical utility remains valid but the risk of privacy loss is minimized.
